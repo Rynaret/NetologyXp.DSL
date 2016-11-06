@@ -53,15 +53,18 @@ suite('When order', ()=> {
     const meatAsBaseFillingPrice = 1.8;
     const italianDoughPrice = 0.6;
     const cheeseAsAdditionalFillingPrice = 0.3;
-
+    const peperoniPrice = 2;
+    const mozzarellaPrice = 2;
+    let pizzeria = new DslPizzeria()
+        .withBaseFillingPrice('meat', meatAsBaseFillingPrice)
+        .withBaseFillingPrice('mozzarella', mozzarellaPrice)
+        .withDoughPrice('italian', italianDoughPrice)
+        .withAdditionalFillingPrice('cheese', cheeseAsAdditionalFillingPrice)
+        .withAdditionalFillingPrice('peperoni', peperoniPrice)
+        .build();
 
     suite('is pizza with meat as base filling, italian dough and additional filling cheese', ()=> {
         test('then order amount is sum of italian dough price + meat as base filling price + cheese as additional filling price', ()=> {
-            let pizzeria = new DslPizzeria()
-                .withBaseFillingPrice('meat', meatAsBaseFillingPrice)
-                .withDoughPrice('italian', italianDoughPrice)
-                .withAdditionalFillingPrice('cheese', cheeseAsAdditionalFillingPrice)
-                .build();
             let pizza = new DslPizza()
                 .withBaseFilling('meat')
                 .withDough('italian')
@@ -72,6 +75,18 @@ suite('When order', ()=> {
             const orderAmount = pizzeria.calculatePrice(order);
 
             assert.equal((meatAsBaseFillingPrice + italianDoughPrice + cheeseAsAdditionalFillingPrice).toFixed(2), orderAmount);
+        });
+    });
+
+    suite('is Peperoni', ()=>{
+        test('then order amount is 4 dollars', ()=> {
+            let pizza = new DslPizza()
+                .buildPeperoni();
+            let order = [pizza];
+
+            const orderAmount = pizzeria.calculatePrice(order);
+
+            assert.equal(peperoniPrice + mozzarellaPrice, orderAmount);
         });
     });
 });

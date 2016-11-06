@@ -4,13 +4,15 @@ export function DslPizzeria () {
     var state = {
         standardPizzaPrice: 2,
         additionalFillingPrice:{
-            cheese:0.1
+            cheese:0.1,
+            peperoni: 2
         },
         doughPrice: {
             italian:0.5
         },
         baseFillingPrice: {
-            meat: 1
+            meat: 1,
+            mozzarella: 2
         }
     };
 

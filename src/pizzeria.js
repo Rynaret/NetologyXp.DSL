@@ -4,6 +4,14 @@ export function Pizzeria(standardPizzaPrice, additionalFillingPrice, baseFilling
     this.baseFillingPrice = baseFillingPrice;
     this.doughPrice = doughPrice;
 
+    this.isExists = (item)=>{
+        return typeof(item) !== 'undefined';
+    };
+
+    this.getPrice = (price, property)=>{
+        return this.isExists(price[property]) ? price[property] : 0;
+    };
+
     this.calculatePrice = (pizzas)=>{
         let pizzaPrice = 0;
 
@@ -22,9 +30,9 @@ export function Pizzeria(standardPizzaPrice, additionalFillingPrice, baseFilling
                 return;
             }
 
-            pizzaPrice += doughPrice[pizzaComposition.dough];
-            pizzaPrice += additionalFillingPrice[pizzaComposition.additionalFilling];
-            pizzaPrice += baseFillingPrice[pizzaComposition.baseFilling];
+            pizzaPrice += this.getPrice(doughPrice, pizzaComposition.dough);
+            pizzaPrice += this.getPrice(additionalFillingPrice, pizzaComposition.additionalFilling);
+            pizzaPrice += this.getPrice(baseFillingPrice, pizzaComposition.baseFilling);
         });
 
         if(standardPizzas.length > 1){
