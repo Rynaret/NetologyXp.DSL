@@ -1,12 +1,14 @@
 module.exports = {
-    Pizza: function(name, dough){
+    Pizza: function(name, dough, baseFilling){
         this.name = name;
 
-        this.pizzaComposition = {
+        this.composition = {
             dough : dough,
+            baseFilling: baseFilling
         };
 
         this.isStandard = ()=>{
-            return this.name === 'Standard';
+            let composition = this.composition;
+            return composition.dough === 'thin' && composition.baseFilling === 'cheese';
         }
     }};

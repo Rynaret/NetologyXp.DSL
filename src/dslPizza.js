@@ -1,7 +1,7 @@
 import { Pizza } from './pizza'
 export function DslPizza () {
     let composition = {
-        name: "Standard",
+        name: 'Standard',
         dough: 'thin',
         baseFilling: 'cheese'
     };
@@ -22,10 +22,10 @@ export function DslPizza () {
     };
 
     this.build = function () {
-        return new Pizza(composition.name);
+        return new Pizza(composition.name, composition.dough, composition.baseFilling);
     };
 
     this.buildStandard = function () {
-        return new Pizza(composition.name);
+        return new Pizza(composition.name, composition.dough, composition.baseFilling);
     }
 }
