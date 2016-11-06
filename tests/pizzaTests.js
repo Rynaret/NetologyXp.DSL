@@ -48,3 +48,30 @@ suite('When standard Pizza Price is 2 dollars and order', ()=>{
         });
     });
 });
+
+suite('When order', ()=> {
+    const meatAsBaseFillingPrice = 1.8;
+    const italianDoughPrice = 0.6;
+    const cheeseAsAdditionalFillingPrice = 0.3;
+
+
+    suite('is pizza with meat as base filling, italian dough and additional filling cheese', ()=> {
+        test('then order amount is sum of italian dough price + meat as base filling price + cheese as additional filling price', ()=> {
+            let pizzeria = new DslPizzeria()
+                .withBaseFillingPrice('meat', meatAsBaseFillingPrice)
+                .withDoughPrice('italian', italianDoughPrice)
+                .withAdditionalFillingPrice('cheese', cheeseAsAdditionalFillingPrice)
+                .build();
+            let pizza = new DslPizza()
+                .withBaseFilling('meat')
+                .withDough('italian')
+                .withAdditionalFilling('cheese')
+                .build();
+            let order = [pizza];
+
+            const orderAmount = pizzeria.calculatePrice(order);
+
+            assert.equal((meatAsBaseFillingPrice + italianDoughPrice + cheeseAsAdditionalFillingPrice).toFixed(2), orderAmount);
+        });
+    });
+});

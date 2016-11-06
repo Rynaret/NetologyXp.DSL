@@ -3,7 +3,8 @@ export function DslPizza () {
     let composition = {
         name: 'Standard',
         dough: 'thin',
-        baseFilling: 'cheese'
+        baseFilling: 'cheese',
+        additionalFilling: ''
     };
 
     this.withName = function (name) {
@@ -21,8 +22,13 @@ export function DslPizza () {
         return this;
     };
 
+    this.withAdditionalFilling = function (additionalFilling) {
+        composition.additionalFilling = additionalFilling;
+        return this;
+    };
+
     this.build = function () {
-        return new Pizza(composition.name, composition.dough, composition.baseFilling);
+        return new Pizza(composition.name, composition.dough, composition.baseFilling, composition.additionalFilling);
     };
 
     this.buildStandard = function () {

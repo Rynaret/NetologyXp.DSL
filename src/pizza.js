@@ -1,10 +1,11 @@
 module.exports = {
-    Pizza: function(name, dough, baseFilling){
+    Pizza: function(name, dough, baseFilling, additionalFilling){
         this.name = name;
 
         this.composition = {
             dough : dough,
-            baseFilling: baseFilling
+            baseFilling: baseFilling,
+            additionalFilling: additionalFilling
         };
 
         this.isStandard = ()=>{
