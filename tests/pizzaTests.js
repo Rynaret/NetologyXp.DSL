@@ -1,18 +1,18 @@
 import assert from 'assert'
 
-import { DslPizza } from '../src/dslPizza'
-import { DslPizzeria } from '../src/dslPizzeria'
+import { NewPizza } from '../src/newPizza'
+import { NewPizzeria } from '../src/newPizzeria'
 
 
 suite('When standard Pizza Price is 2 dollars and order', ()=>{
     const standardPizzaPrice = 2;
-    let pizzeria = new DslPizzeria()
+    let pizzeria = new NewPizzeria()
         .withStandardPizzaPrice(standardPizzaPrice)
         .build();
 
     suite('is standard pizza', ()=>{
         test('then order amount is 2 dollars', ()=>{
-            let pizza = new DslPizza()
+            let pizza = new NewPizza()
                 .buildStandard();
             let order = [pizza];
 
@@ -24,7 +24,7 @@ suite('When standard Pizza Price is 2 dollars and order', ()=>{
 
     suite('is pizza with thin dough, base filling is tomato', ()=>{
         test('then order amount is the same as standard Pizza Price', ()=>{
-            let pizza = new DslPizza()
+            let pizza = new NewPizza()
                 .withBaseFilling('thin')
                 .withBaseFilling('tomato')
                 .build();
@@ -38,7 +38,7 @@ suite('When standard Pizza Price is 2 dollars and order', ()=>{
 
     suite('is 2 standard pizza', ()=>{
         test('then order amount is 90% of the sum of 2 standard pizzas', ()=>{
-            let pizza = new DslPizza()
+            let pizza = new NewPizza()
                 .buildStandard();
             let order = [pizza, pizza];
 
@@ -55,7 +55,7 @@ suite('When order', ()=> {
     const cheeseAsAdditionalFillingPrice = 0.3;
     const peperoniPrice = 2;
     const mozzarellaPrice = 2;
-    let pizzeria = new DslPizzeria()
+    let pizzeria = new NewPizzeria()
         .withBaseFillingPrice('meat', meatAsBaseFillingPrice)
         .withBaseFillingPrice('mozzarella', mozzarellaPrice)
         .withDoughPrice('italian', italianDoughPrice)
@@ -65,7 +65,7 @@ suite('When order', ()=> {
 
     suite('is pizza with meat as base filling, italian dough and additional filling cheese', ()=> {
         test('then order amount is sum of italian dough price + meat as base filling price + cheese as additional filling price', ()=> {
-            let pizza = new DslPizza()
+            let pizza = new NewPizza()
                 .withBaseFilling('meat')
                 .withDough('italian')
                 .withAdditionalFilling('cheese')
@@ -80,7 +80,7 @@ suite('When order', ()=> {
 
     suite('is Peperoni', ()=>{
         test('then order amount is 4 dollars', ()=> {
-            let pizza = new DslPizza()
+            let pizza = new NewPizza()
                 .buildPeperoni();
             let order = [pizza];
 

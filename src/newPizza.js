@@ -1,5 +1,5 @@
 import { Pizza } from './pizza'
-export function DslPizza () {
+export function NewPizza () {
     let composition = {
         name: 'Standard',
         dough: 'thin',

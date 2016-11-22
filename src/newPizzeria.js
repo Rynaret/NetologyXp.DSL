@@ -1,5 +1,5 @@
 import { Pizzeria } from './pizzeria'
-export function DslPizzeria () {
+export function NewPizzeria () {
 
     var state = {
         standardPizzaPrice: 2,
