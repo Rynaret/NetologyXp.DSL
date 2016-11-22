@@ -13,7 +13,9 @@ suite('When standard Pizza Price is 2 dollars and order', ()=>{
     suite('is standard pizza', ()=>{
         test('then order amount is 2 dollars', ()=>{
             let pizza = new NewPizza()
-                .buildStandard();
+                .withDough('thin')
+                .withBaseFilling('cheese')
+                .build();
             let order = [pizza];
 
             const orderAmount = pizzeria.calculatePrice(order);
@@ -39,7 +41,9 @@ suite('When standard Pizza Price is 2 dollars and order', ()=>{
     suite('is 2 standard pizza', ()=>{
         test('then order amount is 90% of the sum of 2 standard pizzas', ()=>{
             let pizza = new NewPizza()
-                .buildStandard();
+                .withDough('thin')
+                .withBaseFilling('cheese')
+                .build();;
             let order = [pizza, pizza];
 
             const orderAmount = pizzeria.calculatePrice(order);
@@ -81,7 +85,10 @@ suite('When order', ()=> {
     suite('is Peperoni', ()=>{
         test('then order amount is 4 dollars', ()=> {
             let pizza = new NewPizza()
-                .buildPeperoni();
+                .withDough('thin')
+                .withBaseFilling('mozzarella')
+                .withAdditionalFilling('peperoni')
+                .build();
             let order = [pizza];
 
             const orderAmount = pizzeria.calculatePrice(order);

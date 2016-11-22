@@ -30,12 +30,4 @@ export function NewPizza () {
     this.build = function () {
         return new Pizza(composition.name, composition.dough, composition.baseFilling, composition.additionalFilling);
     };
-
-    this.buildStandard = function () {
-        return new Pizza(composition.name, composition.dough, composition.baseFilling);
-    };
-
-    this.buildPeperoni = function () {
-        return new Pizza('Peperoni', 'thin', 'mozzarella', 'peperoni');
-    }
 }
